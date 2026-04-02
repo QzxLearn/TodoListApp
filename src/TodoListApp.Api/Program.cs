@@ -16,6 +16,13 @@ builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 
 var app = builder.Build();
 
+// Ensure database and tables exist
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<TodoDbContext>();
+    db.Database.EnsureCreated();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
