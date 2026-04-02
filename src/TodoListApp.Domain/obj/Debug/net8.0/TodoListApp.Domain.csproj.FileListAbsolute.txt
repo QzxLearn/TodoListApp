@@ -1,0 +1,12 @@
+/repo/TodoListApp/src/TodoListApp.Domain/bin/Debug/net8.0/TodoListApp.Domain.deps.json
+/repo/TodoListApp/src/TodoListApp.Domain/bin/Debug/net8.0/TodoListApp.Domain.dll
+/repo/TodoListApp/src/TodoListApp.Domain/bin/Debug/net8.0/TodoListApp.Domain.pdb
+/repo/TodoListApp/src/TodoListApp.Domain/obj/Debug/net8.0/TodoListApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/repo/TodoListApp/src/TodoListApp.Domain/obj/Debug/net8.0/TodoListApp.Domain.AssemblyInfoInputs.cache
+/repo/TodoListApp/src/TodoListApp.Domain/obj/Debug/net8.0/TodoListApp.Domain.AssemblyInfo.cs
+/repo/TodoListApp/src/TodoListApp.Domain/obj/Debug/net8.0/TodoListApp.Domain.csproj.CoreCompileInputs.cache
+/repo/TodoListApp/src/TodoListApp.Domain/obj/Debug/net8.0/TodoListApp.Domain.sourcelink.json
+/repo/TodoListApp/src/TodoListApp.Domain/obj/Debug/net8.0/TodoListApp.Domain.dll
+/repo/TodoListApp/src/TodoListApp.Domain/obj/Debug/net8.0/refint/TodoListApp.Domain.dll
+/repo/TodoListApp/src/TodoListApp.Domain/obj/Debug/net8.0/TodoListApp.Domain.pdb
+/repo/TodoListApp/src/TodoListApp.Domain/obj/Debug/net8.0/ref/TodoListApp.Domain.dll
