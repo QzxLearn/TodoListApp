@@ -10,3 +10,9 @@
 /repo/TodoListApp/src/TodoListApp.Infrastructure/obj/Debug/net8.0/refint/TodoListApp.Infrastructure.dll
 /repo/TodoListApp/src/TodoListApp.Infrastructure/obj/Debug/net8.0/TodoListApp.Infrastructure.pdb
 /repo/TodoListApp/src/TodoListApp.Infrastructure/obj/Debug/net8.0/ref/TodoListApp.Infrastructure.dll
+/repo/TodoListApp/src/TodoListApp.Infrastructure/bin/Debug/net8.0/TodoListApp.Infrastructure.runtimeconfig.json
+/repo/TodoListApp/src/TodoListApp.Infrastructure/bin/Debug/net8.0/TodoListApp.Domain.dll
+/repo/TodoListApp/src/TodoListApp.Infrastructure/bin/Debug/net8.0/TodoListApp.Domain.pdb
+/repo/TodoListApp/src/TodoListApp.Infrastructure/obj/Debug/net8.0/TodoListApp.Infrastructure.csproj.AssemblyReference.cache
+/repo/TodoListApp/src/TodoListApp.Infrastructure/obj/Debug/net8.0/TodoList.17FEECDB.Up2Date
+/repo/TodoListApp/src/TodoListApp.Infrastructure/obj/Debug/net8.0/TodoListApp.Infrastructure.genruntimeconfig.cache
