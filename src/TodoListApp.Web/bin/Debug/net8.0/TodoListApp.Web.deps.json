@@ -7,14 +7,30 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {
       "TodoListApp.Web/1.0.0": {
+        "dependencies": {
+          "TodoListApp.Domain": "1.0.0"
+        },
         "runtime": {
           "TodoListApp.Web.dll": {}
+        }
+      },
+      "TodoListApp.Domain/1.0.0": {
+        "runtime": {
+          "TodoListApp.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
   },
   "libraries": {
     "TodoListApp.Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TodoListApp.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

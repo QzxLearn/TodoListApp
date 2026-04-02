@@ -1,10 +1,14 @@
 using TodoListApp.Web.Components;
+using TodoListApp.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddHttpClient<TodoApiService>();
+builder.Services.AddScoped<TodoApiService>();
 
 var app = builder.Build();
 

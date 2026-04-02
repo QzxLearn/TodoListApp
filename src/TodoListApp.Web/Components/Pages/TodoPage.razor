@@ -1,0 +1,170 @@
+@page "/todos"
+@inject TodoApiService TodoService
+@inject ILogger<TodoPage> Logger
+@rendermode InteractiveServer
+
+<PageTitle>待办事项</PageTitle>
+
+<div class="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 py-10 px-4">
+    <div class="max-w-2xl mx-auto">
+        @* Header *@
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">待办事项</h1>
+            <p class="text-gray-500">记录今天要完成的任务</p>
+        </div>
+
+        @* Input Card *@
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <div class="flex gap-3">
+                <input
+                    type="text"
+                    placeholder="输入新任务标题，按回车添加..."
+                    class="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
+                    @bind="newTodoTitle"
+                    @bind:event="oninput"
+                    @onkeydown="HandleKeyDown" />
+                <button
+                    class="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    @onclick="AddTodo"
+                    disabled="@string.IsNullOrWhiteSpace(newTodoTitle)">
+                    添加
+                </button>
+            </div>
+        </div>
+
+        @* Todo List *@
+        @if (isLoading)
+        {
+            <div class="text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-indigo-500 border-t-transparent"></div>
+                <p class="mt-3 text-gray-500">加载中...</p>
+            </div>
+        }
+        else if (todos.Count == 0)
+        {
+            <div class="bg-white rounded-2xl shadow-lg p-12 text-center">
+                <div class="text-6xl mb-4">📝</div>
+                <p class="text-xl text-gray-400">还没有任务，添加一个吧～</p>
+            </div>
+        }
+        else
+        {
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                @foreach (var todo in todos)
+                {
+                    <div class="group flex items-center gap-4 px-6 py-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors @(todo.IsCompleted ? "bg-gray-50" : "")">
+                        @* Checkbox *@
+                        <button
+                            class="w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all @(todo.IsCompleted ? "bg-green-500 border-green-500" : "border-gray-300 hover:border-indigo-400")"
+                            @onclick="() => ToggleTodo(todo)">
+                            @if (todo.IsCompleted)
+                            {
+                                <span class="text-white text-sm">✓</span>
+                            }
+                        </button>
+
+                        @* Title *@
+                        <span class="flex-1 text-lg @(todo.IsCompleted ? "line-through text-gray-400" : "text-gray-700")">
+                            @todo.Title
+                        </span>
+
+                        @* Delete Button (red, hover only) *@
+                        <button
+                            class="px-3 py-1 text-sm text-red-500 hover:text-white hover:bg-red-500 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200"
+                            @onclick="() => DeleteTodo(todo.Id)">
+                            删除
+                        </button>
+                    </div>
+                }
+            </div>
+        }
+
+        @* Footer Stats *@
+        @if (!isLoading && todos.Count > 0)
+        {
+            <div class="mt-4 text-center text-sm text-gray-400">
+                共 @todos.Count 项任务，已完成 @todos.Count(t => t.IsCompleted) 项
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<TodoItem> todos = [];
+    private string newTodoTitle = "";
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadTodos();
+    }
+
+    private async Task LoadTodos()
+    {
+        isLoading = true;
+        try
+        {
+            todos = await TodoService.GetAllAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Failed to load todos");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task AddTodo()
+    {
+        if (string.IsNullOrWhiteSpace(newTodoTitle)) return;
+
+        try
+        {
+            var todo = await TodoService.CreateAsync(newTodoTitle.Trim());
+            todos.Add(todo);
+            newTodoTitle = "";
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Failed to add todo");
+        }
+    }
+
+    private async Task ToggleTodo(TodoItem todo)
+    {
+        todo.IsCompleted = !todo.IsCompleted;
+        try
+        {
+            await TodoService.UpdateAsync(todo);
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            todo.IsCompleted = !todo.IsCompleted;
+            Logger.LogError(ex, "Failed to toggle todo");
+        }
+    }
+
+    private async Task DeleteTodo(Guid id)
+    {
+        try
+        {
+            await TodoService.DeleteAsync(id);
+            todos.RemoveAll(t => t.Id == id);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Failed to delete todo");
+        }
+    }
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await AddTodo();
+        }
+    }
+}

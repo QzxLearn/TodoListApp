@@ -28,3 +28,9 @@
 /repo/TodoListApp/src/TodoListApp.Web/obj/Debug/net8.0/TodoListApp.Web.pdb
 /repo/TodoListApp/src/TodoListApp.Web/obj/Debug/net8.0/TodoListApp.Web.genruntimeconfig.cache
 /repo/TodoListApp/src/TodoListApp.Web/obj/Debug/net8.0/ref/TodoListApp.Web.dll
+/repo/TodoListApp/src/TodoListApp.Web/bin/Debug/net8.0/package-lock.json
+/repo/TodoListApp/src/TodoListApp.Web/bin/Debug/net8.0/package.json
+/repo/TodoListApp/src/TodoListApp.Web/bin/Debug/net8.0/TodoListApp.Domain.dll
+/repo/TodoListApp/src/TodoListApp.Web/bin/Debug/net8.0/TodoListApp.Domain.pdb
+/repo/TodoListApp/src/TodoListApp.Web/obj/Debug/net8.0/TodoListApp.Web.csproj.AssemblyReference.cache
+/repo/TodoListApp/src/TodoListApp.Web/obj/Debug/net8.0/TodoList.4C4E535A.Up2Date
